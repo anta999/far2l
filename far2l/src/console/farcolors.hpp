@@ -41,7 +41,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 class FarColors : NonCopyable
 {
 public:
-	static uint64_t setcolors[SIZE_ARRAY_FARCOLORS];
+	static uint64_t currentColors[SIZE_ARRAY_FARCOLORS];
 	uint64_t colors[SIZE_ARRAY_FARCOLORS];
 	static uint32_t GammaCorrection;
 	static bool GammaChanged;
@@ -54,16 +54,16 @@ public:
 	static void SaveFarColors( ) noexcept;
 
 	void Set() noexcept { 
-		memcpy(setcolors, colors, sizeof(setcolors[0]) * SIZE_ARRAY_FARCOLORS);
+		memcpy(currentColors, colors, sizeof(currentColors[0]) * SIZE_ARRAY_FARCOLORS);
 	}
 
 	static void Set(uint64_t *colors) noexcept { 
-		memcpy(setcolors, colors, sizeof(setcolors[0]) * SIZE_ARRAY_FARCOLORS);
+		memcpy(currentColors, colors, sizeof(currentColors[0]) * SIZE_ARRAY_FARCOLORS);
 	}
 
 	static void SetRange(size_t startindex, size_t colorscount, uint64_t *colors ) noexcept {
 		if (colors && startindex >= 0 && startindex < SIZE_ARRAY_FARCOLORS && startindex + colorscount <= SIZE_ARRAY_FARCOLORS)
-			memcpy(setcolors + startindex, colors, sizeof(setcolors[0]) * colorscount);
+			memcpy(currentColors + startindex, colors, sizeof(currentColors[0]) * colorscount);
 	}
 
 	bool Load(KeyFileHelper &kfh) noexcept;
@@ -83,7 +83,7 @@ public:
 
 inline uint64_t FarColorToReal(unsigned int FarColor)
 {
-	return (FarColor < SIZE_ARRAY_FARCOLORS) ? FarColors::setcolors[FarColor] : 4 * 16 + 15;
+	return (FarColor < SIZE_ARRAY_FARCOLORS) ? FarColors::currentColors[FarColor] : 4 * 16 + 15;
 }
 
 extern uint8_t BlackColorsIndex16[SIZE_ARRAY_FARCOLORS];

@@ -200,7 +200,7 @@ ColorsInit[]
 static_assert(ARRAYSIZE(ColorsInit) == COL_LASTPALETTECOLOR);
 
 class FarColors FarColors::FARColors;
-uint64_t FarColors::setcolors[SIZE_ARRAY_FARCOLORS];
+uint64_t FarColors::currentColors[SIZE_ARRAY_FARCOLORS];
 uint32_t FarColors::GammaCorrection = 0;
 bool FarColors::GammaChanged = false;
 
@@ -310,8 +310,10 @@ void FarColors::InitFarColors( ) noexcept {
 
 	ConfigReader cfg_reader("Colors");
 	if (cfg_reader.HasSection()) {
-		const std::string strCurrentPaletteRGB = "CurrentPaletteRGB";
-		const std::string strCurrentPalette = "CurrentPalette";
+//		const std::string strCurrentPaletteRGB = "CurrentPaletteRGB";
+//		const std::string strCurrentPalette = "CurrentPalette";
+		static const char *strCurrentPaletteRGB = "CurrentPaletteRGB";
+		static const char *strCurrentPalette = "CurrentPalette";
 		if (cfg_reader.HasKey(strCurrentPaletteRGB)) {
 			if (cfg_reader.GetBytes((unsigned char*)FARColors.colors, SIZE_ARRAY_FARCOLORS * sizeof(uint64_t), strCurrentPaletteRGB) == SIZE_ARRAY_FARCOLORS * sizeof(uint64_t)) {
 				FARColors.Set();

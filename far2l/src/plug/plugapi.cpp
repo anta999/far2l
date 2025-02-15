@@ -303,7 +303,7 @@ static INT_PTR WINAPI FarAdvControlSynched(INT_PTR ModuleNumber, int Command, vo
 		case ACTL_GETCOLOR: {
 			if ((int)(INT_PTR)Param1 < SIZE_ARRAY_FARCOLORS && (int)(INT_PTR)Param1 >= 0) {
 
-				*(uint64_t *)Param2 = (uint64_t)FarColors::setcolors[(int)(INT_PTR)Param1];
+				*(uint64_t *)Param2 = (uint64_t)FarColors::currentColors[(int)(INT_PTR)Param1];
 				return TRUE;
 			}
 
@@ -320,7 +320,7 @@ static INT_PTR WINAPI FarAdvControlSynched(INT_PTR ModuleNumber, int Command, vo
 				return SIZE_ARRAY_FARCOLORS;
 
 			if (Param2)
-				memcpy(Param2, &FarColors::setcolors[0], (int)(intptr_t)Param1 * sizeof(FarColors::setcolors[0]));
+				memcpy(Param2, &FarColors::currentColors[0], (int)(intptr_t)Param1 * sizeof(FarColors::currentColors[0]));
 
 			return SIZE_ARRAY_FARCOLORS;
 		}

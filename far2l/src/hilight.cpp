@@ -416,7 +416,7 @@ static void ApplyBlackOnBlackColors(HighlightDataColor *hl)
 		// Для пометки возьмем цвета файла включая прозрачность.
 		if (!(hl->Color[HIGHLIGHTCOLORTYPE_FILE][i] & 0xFF)) {
 
-			hl->Color[HIGHLIGHTCOLORTYPE_FILE][i] = FarColors::setcolors[FarColor[i]];
+			hl->Color[HIGHLIGHTCOLORTYPE_FILE][i] = FarColors::currentColors[FarColor[i]];
 		}
 
 		// Если у метки black on black, то возьмем ей цвета и маску от имени
@@ -432,7 +432,7 @@ static void ApplyStartColors(HighlightDataColor *hl)
 {
 	// Начинаем с цветов "по умолчанию" и далее их раскрашиваем
 	for (int i = 0; i < 4; i++) {
-		hl->Color[HIGHLIGHTCOLORTYPE_FILE][i] = FarColors::setcolors[FarColor[i]];
+		hl->Color[HIGHLIGHTCOLORTYPE_FILE][i] = FarColors::currentColors[FarColor[i]];
 		hl->Mask[HIGHLIGHTCOLORTYPE_FILE][i] |= 0xFFFFFFFFFFFFFFFF;
 		hl->Color[HIGHLIGHTCOLORTYPE_MARKSTR][i] = hl->Color[HIGHLIGHTCOLORTYPE_FILE][i];
 		hl->Mask[HIGHLIGHTCOLORTYPE_MARKSTR][i] = hl->Mask[HIGHLIGHTCOLORTYPE_FILE][i];

@@ -452,7 +452,7 @@ void GetColor(int ColorIndex)
 
 	if (GetColorDialog(&NewColor, false)) {
 		FarColors::FARColors.colors[ColorIndex] = NewColor;
-		FarColors::setcolors[ColorIndex] = NewColor;
+		FarColors::currentColors[ColorIndex] = NewColor;
 
 		ScrBuf.Lock();	// отменяем всякую прорисовку
 		CtrlObject->Cp()->LeftPanel->Update(UPDATE_KEEP_SELECTION);
